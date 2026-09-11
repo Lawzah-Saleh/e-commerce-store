@@ -1,15 +1,17 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar'
+import Home from './pages/Home/Home'
+import Products from './pages/Products/Products'
 
 function App() {
   return (
-    <>
-      <Navbar storeName="E-commerce" />
-
-      <main>
-        <h1>Welcome to Nexora</h1>
-        <p>Modern E-Commerce Platform</p>
-      </main>
-    </>
+    <BrowserRouter>
+    <Navbar storeName="Nexora" /> 
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
