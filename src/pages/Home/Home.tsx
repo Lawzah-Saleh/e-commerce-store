@@ -1,10 +1,11 @@
-function Home() {
-  return (
-    <main>
-      <h1>Welcome to Nexora</h1>
-      <p>Modern E-Commerce Platform</p>
-    </main>
-  )
-}
+import Hero from "../../components/Hero/Hero";
 
-export default Home
+const Home = () => {
+  return (
+    <>
+      <Hero />
+    </>
+  );
+};
+
+export default Home;
