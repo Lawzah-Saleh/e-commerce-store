@@ -35,7 +35,8 @@
 .product-card__image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 24px;
   transition: transform var(--transition-slow);
 }
 
@@ -125,8 +126,15 @@
   transform: scale(1.05);
 }
 
-.product-card__wishlist:active {
-  transform: scale(0.94);
+.product-card__wishlist--active {
+  color: var(--color-primary);
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary-light);
+}
+
+.product-card__wishlist--active:hover {
+  color: var(--color-primary-hover);
+  background: var(--color-primary-light);
 }
 
 /* Content */

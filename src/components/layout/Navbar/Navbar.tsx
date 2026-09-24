@@ -3,9 +3,10 @@ import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { SearchInput } from '../../common/SearchInput/SearchInput';
 import './Navbar.css';
-
+import { useCart } from '../../../features/cart/context/CartContext';
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { itemCount } = useCart();
 
   const handleSearch = (value: string) => {
     console.log('Search:', value);
@@ -91,8 +92,12 @@ export function Navbar() {
             aria-label="Shopping cart"
           >
             <ShoppingBag size={19} strokeWidth={1.8} />
-            <span className="navbar__badge">0</span>
-          </Link>
+                    {itemCount > 0 && (
+                    <span className="navbar__badge">
+                        {itemCount}
+                    </span>
+                    )}       
+                 </Link>
 
           <Link
             to="/account"
@@ -147,7 +152,11 @@ export function Navbar() {
         >
           <ShoppingBag size={19} />
           <span>Cart</span>
-          <span className="navbar__mobile-badge">0</span>
+          {itemCount > 0 && (
+            <span className="navbar__mobile-badge">
+                {itemCount}
+            </span>
+          )}
         </Link>
 
         <Link

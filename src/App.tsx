@@ -25,11 +25,17 @@ function App() {
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
-      </Route>
-
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+        </Route>
+        <Route path="/cart" element={<CartPage />} /> 
+        <Route path="*" element={<NotFoundPage />} />
+        </Routes>
   );
 }
-
+function CartPage() {
+  return (
+    <div style={{ padding: '64px 16px' }}>
+      <h1>Shopping Cart</h1>
+    </div>
+  );
+}
 export default App;

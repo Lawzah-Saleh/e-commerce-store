@@ -1,8 +1,9 @@
 import { Heart, ShoppingBag, Star } from 'lucide-react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Product } from '../../types/product.types';
 import './ProductCard.css';
-
+import { useCart } from '../../../cart/context/CartContext';
 interface ProductCardProps {
   product: Product;
   onAddToCart?: (product: Product) => void;
@@ -14,11 +15,15 @@ export function ProductCard({
   onAddToCart,
   onToggleWishlist,
 }: ProductCardProps) {
-  const handleAddToCart = () => {
+  const [isWishlisted, setIsWishlisted] = useState(false);
+    const { addToCart } = useCart();
+    const handleAddToCart = () => {
+    addToCart(product);
     onAddToCart?.(product);
-  };
+    };
 
   const handleToggleWishlist = () => {
+    setIsWishlisted((current) => !current);
     onToggleWishlist?.(product);
   };
 
@@ -41,11 +46,24 @@ export function ProductCard({
 
         <button
           type="button"
-          className="product-card__wishlist"
+          className={`product-card__wishlist ${
+            isWishlisted
+              ? 'product-card__wishlist--active'
+              : ''
+          }`}
           onClick={handleToggleWishlist}
-          aria-label={`Add ${product.name} to wishlist`}
+          aria-label={
+            isWishlisted
+              ? `Remove ${product.name} from wishlist`
+              : `Add ${product.name} to wishlist`
+          }
+          aria-pressed={isWishlisted}
         >
-          <Heart size={18} strokeWidth={1.8} />
+          <Heart
+            size={18}
+            strokeWidth={1.8}
+            fill={isWishlisted ? 'currentColor' : 'none'}
+          />
         </button>
 
         <Link
