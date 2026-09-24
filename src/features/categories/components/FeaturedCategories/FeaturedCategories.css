@@ -1,40 +1,93 @@
 .featured-categories {
-  padding: var(--space-16) 0;
+  padding: 40px 0 96px;
+
+  background: var(--color-background);
+}
+
+.featured-categories__container {
+  width: min(
+    calc(100% - 32px),
+    var(--container-width)
+  );
+
+  margin: 0 auto;
+}
+
+
+/* =================================
+   Header
+================================= */
+
+.featured-categories__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-bottom: 32px;
 }
 
 .featured-categories__eyebrow {
   color: var(--color-primary);
 
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: var(--font-weight-bold);
+
   text-transform: uppercase;
+  letter-spacing: 1.2px;
 }
 
 .featured-categories__header h2 {
-  margin-top: var(--space-2);
+  margin-top: 7px;
 
   color: var(--color-text);
 
-  font-size: clamp(28px, 4vw, 40px);
-  line-height: 1.2;
+  font-size: clamp(28px, 3vw, 36px);
+  letter-spacing: -1px;
 }
 
 .featured-categories__header p {
-  margin-top: var(--space-3);
+  margin-top: 8px;
 
   color: var(--color-text-muted);
+
+  font-size: 15px;
 }
+
+.featured-categories__view-all {
+  padding-bottom: 4px;
+
+  color: var(--color-primary);
+
+  border-bottom: 1px solid var(--color-primary);
+
+  font-size: 13px;
+  font-weight: var(--font-weight-semibold);
+
+  transition:
+    opacity var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.featured-categories__view-all:hover {
+  opacity: 0.75;
+}
+
+
+/* =================================
+   Grid
+================================= */
 
 .featured-categories__grid {
   display: grid;
-
   grid-template-columns: repeat(3, 1fr);
 
-  gap: var(--space-4);
-
-  margin-top: var(--space-8);
+  gap: 16px;
 }
+
+
+/* =================================
+   Responsive
+================================= */
 
 @media (max-width: 900px) {
   .featured-categories__grid {
@@ -42,9 +95,22 @@
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 600px) {
   .featured-categories {
-    padding: var(--space-10) 0;
+    padding: 24px 0 64px;
+  }
+
+  .featured-categories__container {
+    width: min(
+      calc(100% - 24px),
+      var(--container-width)
+    );
+  }
+
+  .featured-categories__header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
   }
 
   .featured-categories__grid {

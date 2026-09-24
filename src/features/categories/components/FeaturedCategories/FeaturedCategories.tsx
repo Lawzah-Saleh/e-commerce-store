@@ -1,65 +1,86 @@
-import { PageContainer } from '../../../../components/layout/PageContainer/PageContainer';
 import {
-  CategoryCard,
-  type CategoryCardProps,
-} from '../CategoryCard/CategoryCard';
+  AudioLines,
+  Gamepad2,
+  Laptop,
+  Smartphone,
+  Tablet,
+  Watch,
+} from 'lucide-react';
+
+import { CategoryCard } from '../CategoryCard/CategoryCard';
 import './FeaturedCategories.css';
 
-const categories: CategoryCardProps[] = [
+const categories = [
   {
     name: 'Smartphones',
-    description: 'Discover the latest smartphones.',
+    description: 'Latest devices for everyday life.',
     slug: 'smartphones',
-    icon: '📱',
+    icon: <Smartphone size={23} strokeWidth={1.8} />,
+    productCount: 40,
   },
   {
     name: 'Laptops',
-    description: 'Powerful laptops for work and play.',
+    description: 'Powerful machines for work and play.',
     slug: 'laptops',
-    icon: '💻',
+    icon: <Laptop size={23} strokeWidth={1.8} />,
+    productCount: 28,
   },
   {
     name: 'Tablets',
-    description: 'Portable devices for every need.',
+    description: 'Portable technology for every moment.',
     slug: 'tablets',
-    icon: '📱',
+    icon: <Tablet size={23} strokeWidth={1.8} />,
+    productCount: 22,
   },
   {
     name: 'Audio',
-    description: 'Headphones, speakers and more.',
+    description: 'Immersive sound for your lifestyle.',
     slug: 'audio',
-    icon: '🎧',
+    icon: <AudioLines size={23} strokeWidth={1.8} />,
+    productCount: 35,
   },
   {
     name: 'Gaming',
-    description: 'Level up your gaming setup.',
+    description: 'Gear built for your next level.',
     slug: 'gaming',
-    icon: '🎮',
+    icon: <Gamepad2 size={23} strokeWidth={1.8} />,
+    productCount: 31,
   },
   {
     name: 'Smart Watches',
     description: 'Stay connected wherever you go.',
     slug: 'smart-watches',
-    icon: '⌚',
+    icon: <Watch size={23} strokeWidth={1.8} />,
+    productCount: 18,
   },
 ];
 
 export function FeaturedCategories() {
   return (
     <section className="featured-categories">
-      <PageContainer>
+      <div className="featured-categories__container">
+
         <div className="featured-categories__header">
           <div>
             <span className="featured-categories__eyebrow">
               Explore
             </span>
 
-            <h2>Shop by Category</h2>
+            <h2>
+              Shop by category
+            </h2>
 
             <p>
-              Find the technology that fits your lifestyle.
+              Find the technology that fits your world.
             </p>
           </div>
+
+          <a
+            href="/categories"
+            className="featured-categories__view-all"
+          >
+            View all
+          </a>
         </div>
 
         <div className="featured-categories__grid">
@@ -70,7 +91,8 @@ export function FeaturedCategories() {
             />
           ))}
         </div>
-      </PageContainer>
+
+      </div>
     </section>
   );
 }
