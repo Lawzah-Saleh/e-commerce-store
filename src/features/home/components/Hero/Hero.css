@@ -1,0 +1,171 @@
+.hero {
+  padding: var(--space-16) 0;
+}
+
+.hero__content {
+  min-height: 560px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.hero__text {
+  max-width: 620px;
+}
+
+.hero__eyebrow {
+  display: inline-block;
+
+  margin-bottom: var(--space-4);
+
+  color: var(--color-primary);
+
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  color: var(--color-text);
+
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+.hero h1 span {
+  display: block;
+  color: var(--color-primary);
+}
+
+.hero__text p {
+  max-width: 540px;
+
+  margin-top: var(--space-6);
+
+  color: var(--color-text-muted);
+
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+
+  margin-top: var(--space-8);
+}
+
+.hero__actions a {
+  color: inherit;
+}
+
+.hero__visual {
+  min-height: 460px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: var(--radius-xl);
+
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      rgb(37 99 235 / 20%),
+      transparent 40%
+    ),
+    var(--color-surface);
+
+  overflow: hidden;
+}
+
+.hero__visual-card {
+  width: 70%;
+  aspect-ratio: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+
+  background: var(--color-background);
+  box-shadow: var(--shadow-lg);
+
+  text-align: center;
+}
+
+.hero__visual-card span {
+  color: var(--color-primary);
+
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.hero__visual-card strong {
+  margin-top: var(--space-3);
+
+  color: var(--color-text);
+
+  font-size: 28px;
+}
+
+@media (max-width: 800px) {
+  .hero {
+    padding: var(--space-10) 0;
+  }
+
+  .hero__content {
+    min-height: auto;
+
+    grid-template-columns: 1fr;
+  }
+
+  .hero__text {
+    max-width: none;
+    text-align: center;
+  }
+
+  .hero__text p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero__actions {
+    justify-content: center;
+  }
+
+  .hero__visual {
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .hero__text p {
+    font-size: 16px;
+  }
+
+  .hero__visual {
+    min-height: 280px;
+  }
+
+  .hero__visual-card {
+    width: 75%;
+  }
+
+  .hero__visual-card strong {
+    font-size: 22px;
+  }
+}

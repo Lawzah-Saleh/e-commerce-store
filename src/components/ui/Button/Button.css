@@ -1,0 +1,81 @@
+.button {
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Sizes */
+
+.button--sm {
+  min-height: 36px;
+  padding: 0 var(--space-3);
+  font-size: 14px;
+}
+
+.button--md {
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  font-size: 15px;
+}
+
+.button--lg {
+  min-height: 52px;
+  padding: 0 var(--space-6);
+  font-size: 16px;
+}
+
+/* Variants */
+
+.button--primary {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.button--primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.button--secondary {
+  background: var(--color-text);
+  color: #ffffff;
+}
+
+.button--outline {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.button--outline:hover:not(:disabled) {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.button--ghost {
+  background: transparent;
+  color: var(--color-text);
+}
+
+.button--ghost:hover:not(:disabled) {
+  background: var(--color-surface);
+}
+
+.button--danger {
+  background: var(--color-error);
+  color: #ffffff;
+}

@@ -1,20 +1,35 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import MainLayout from "./components/layouts/MainLayout/MainLayout";
-import Navbar from './components/Navbar/Navbar'
-import Home from './pages/Home/Home'
-import Products from './pages/Products/Products'
+import { Route, Routes } from 'react-router-dom';
+import { MainLayout } from './layouts/MainLayout/MainLayout';
+import { HomePage } from './pages/HomePage/HomePage';
+
+function ProductsPage() {
+  return (
+    <div style={{ padding: '64px 16px' }}>
+      <h1>Products</h1>
+    </div>
+  );
+}
+
+function NotFoundPage() {
+  return (
+    <div style={{ padding: '64px 16px' }}>
+      <h1>404</h1>
+      <p>Page not found.</p>
+    </div>
+  );
+}
 
 function App() {
   return (
-    <BrowserRouter>
-    <Navbar storeName="Nexora" /> 
-      <Routes>
-        <Route element={<MainLayout />}/>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-      </Routes>
-    </BrowserRouter>
-  )
+    <Routes>
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/products" element={<ProductsPage />} />
+      </Route>
+
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
