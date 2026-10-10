@@ -1,6 +1,7 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -19,12 +20,49 @@ const CartContext = createContext<
 interface CartProviderProps {
   children: ReactNode;
 }
+function isValidCartItem(item: unknown): item is CartItem {
+  if (typeof item !== 'object' || item === null) {
+    return false;
+  }
 
+  const candidate = item as Partial<CartItem>;
+
+  return (
+    typeof candidate.quantity === 'number' &&
+    Number.isInteger(candidate.quantity) &&
+    candidate.quantity > 0 &&
+    typeof candidate.product === 'object' &&
+    candidate.product !== null &&
+    typeof candidate.product.id === 'number' &&
+    typeof candidate.product.name === 'string' &&
+    typeof candidate.product.price === 'number' &&
+    Number.isFinite(candidate.product.price) &&
+    candidate.product.price >= 0
+  );
+}
 export function CartProvider({
   children,
 }: CartProviderProps) {
-  const [items, setItems] = useState<CartItem[]>([]);
+const [items, setItems] = useState<CartItem[]>(() => {
+  try {
+    const savedCart = localStorage.getItem('nexora-cart');
 
+    if (!savedCart) {
+      return [];
+    }
+
+    const parsed: unknown = JSON.parse(savedCart);
+
+    if (!Array.isArray(parsed)) {
+      return [];
+    }
+
+    return parsed.filter(isValidCartItem);
+  } catch (error) {
+    console.error('Failed to load cart from localStorage:', error);
+    return [];
+  }
+});
 
 const addToCart = (product: Product) => {
   if (!product.inStock) return;
