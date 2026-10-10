@@ -1,21 +1,18 @@
+
 import { Route, Routes } from 'react-router-dom';
 import { MainLayout } from './layouts/MainLayout/MainLayout';
 import { HomePage } from './pages/HomePage/HomePage';
+import Products from './pages/Products/Products';
+import CartPage from './pages/CartPage/CartPage';
 
-function ProductsPage() {
-  return (
-    <div style={{ padding: '64px 16px' }}>
-      <h1>Products</h1>
-    </div>
-  );
-}
+
 
 function NotFoundPage() {
   return (
-    <div style={{ padding: '64px 16px' }}>
+    <main style={{ padding: '64px 16px' }}>
       <h1>404</h1>
       <p>Page not found.</p>
-    </div>
+    </main>
   );
 }
 
@@ -24,18 +21,13 @@ function App() {
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
-        <Route path="/products" element={<ProductsPage />} />
-        </Route>
-        <Route path="/cart" element={<CartPage />} /> 
-        <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+        <Route path="/products" element={<Products />} />
+        <Route path="/cart" element={<CartPage />} />
+      </Route>
+
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
-function CartPage() {
-  return (
-    <div style={{ padding: '64px 16px' }}>
-      <h1>Shopping Cart</h1>
-    </div>
-  );
-}
+
 export default App;

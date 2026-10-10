@@ -1,3 +1,4 @@
+
 import type { Product } from '../../products/types/product.types';
 
 export interface CartItem {
@@ -8,6 +9,7 @@ export interface CartItem {
 export interface CartContextValue {
   items: CartItem[];
   itemCount: number;
+  subtotal: number;
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
   updateQuantity: (

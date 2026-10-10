@@ -257,14 +257,6 @@
 }
 
 
-/* =================================
-   Mobile Menu
-================================= */
-
-.navbar__mobile-menu {
-  display: none;
-}
-
 
 /* =================================
    Mobile
@@ -322,28 +314,30 @@
   }
 
   .navbar__mobile-menu {
-    display: block;
+  display: block;
+  visibility: hidden;
 
-    max-height: 0;
-    overflow: hidden;
+  max-height: 0;
+  overflow: hidden;
 
-    padding: 0 16px;
+  padding: 0 16px;
 
-    background: var(--color-white);
-    border-top: 1px solid transparent;
+  background: var(--color-white);
+  border-top: 1px solid transparent;
 
-    opacity: 0;
+  opacity: 0;
 
-    transition:
-      max-height var(--transition-normal),
-      opacity var(--transition-normal),
-      padding var(--transition-normal),
-      border-color var(--transition-normal);
-  }
+  transition:
+    max-height var(--transition-normal),
+    opacity var(--transition-normal),
+    padding var(--transition-normal),
+    border-color var(--transition-normal),
+    visibility 0s linear var(--transition-normal);
+}
 
   .navbar__mobile-menu--open {
     max-height: 500px;
-
+    visibility: visible;
     padding-top: 16px;
     padding-bottom: 20px;
 

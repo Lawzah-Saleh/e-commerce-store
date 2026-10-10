@@ -34,6 +34,8 @@ export function Navbar() {
           onClick={() => setIsMenuOpen((current) => !current)}
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
+
         >
           {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -112,6 +114,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       <div
+        id="mobile-navigation"
         className={`navbar__mobile-menu ${
           isMenuOpen ? 'navbar__mobile-menu--open' : ''
         }`}
