@@ -9,7 +9,7 @@ import {
 
 import { CategoryCard } from '../CategoryCard/CategoryCard';
 import './FeaturedCategories.css';
-
+import { Link } from 'react-router-dom';
 const categories = [
   {
     name: 'Smartphones',
@@ -60,28 +60,17 @@ export function FeaturedCategories() {
     <section className="featured-categories">
       <div className="featured-categories__container">
 
-        <div className="featured-categories__header">
-          <div>
-            <span className="featured-categories__eyebrow">
-              Explore
-            </span>
-
-            <h2>
-              Shop by category
-            </h2>
-
-            <p>
-              Find the technology that fits your world.
-            </p>
+      <div className="featured-categories__header">
+        <div className="featured-categories__heading">
+          <div className="featured-categories__eyebrow">
+            <span />
+            SHOP BY CATEGORY
+            <span />
           </div>
 
-          <a
-            href="/categories"
-            className="featured-categories__view-all"
-          >
-            View all
-          </a>
+          <h2>Featured Categories</h2>
         </div>
+      </div>
 
         <div className="featured-categories__grid">
           {categories.map((category) => (

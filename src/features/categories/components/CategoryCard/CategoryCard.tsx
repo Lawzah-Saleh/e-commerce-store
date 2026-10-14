@@ -1,6 +1,6 @@
-import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './CategoryCard.css';
+import { ArrowRight } from 'lucide-react';
 
 export interface CategoryCardProps {
   name: string;
@@ -28,10 +28,7 @@ export function CategoryCard({
         </div>
 
         <div className="category-card__arrow">
-          <ArrowUpRight
-            size={18}
-            strokeWidth={1.8}
-          />
+          <ArrowRight size={18} strokeWidth={1.8} />
         </div>
       </div>
 

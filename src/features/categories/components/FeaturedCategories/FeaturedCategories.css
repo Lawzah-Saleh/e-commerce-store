@@ -1,6 +1,5 @@
 .featured-categories {
-  padding: 40px 0 96px;
-
+  padding: 56px 0 80px;
   background: var(--color-background);
 }
 
@@ -20,30 +19,35 @@
 
 .featured-categories__header {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-
+  justify-content: center;
   margin-bottom: 32px;
+  text-align: center;
 }
 
 .featured-categories__eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
   color: var(--color-primary);
-
   font-size: 12px;
-  font-weight: var(--font-weight-bold);
-
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 1.6px;
+}
+.featured-categories__eyebrow span {
+  width: 42px;
+  height: 1px;
+  background: var(--color-primary-light);
 }
 
-.featured-categories__header h2 {
-  margin-top: 7px;
-
-  color: var(--color-text);
-
+.featured-categories__heading h2 {
+  margin-top: 14px;
   font-size: clamp(28px, 3vw, 36px);
   letter-spacing: -1px;
 }
+
+
+
 
 .featured-categories__header p {
   margin-top: 8px;
@@ -72,6 +76,23 @@
   opacity: 0.75;
 }
 
+@media (max-width: 900px) {
+  .featured-categories__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .featured-categories {
+    padding: 40px 0 56px;
+  }
+
+  .featured-categories__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
 
 /* =================================
    Grid
@@ -79,9 +100,8 @@
 
 .featured-categories__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
 }
 
 
@@ -90,14 +110,15 @@
 ================================= */
 
 @media (max-width: 900px) {
-  .featured-categories__grid {
-    grid-template-columns: repeat(2, 1fr);
+ .featured-categories__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
   }
 }
 
 @media (max-width: 600px) {
   .featured-categories {
-    padding: 24px 0 64px;
+    padding: 40px 0 56px;
   }
 
   .featured-categories__container {
@@ -114,6 +135,7 @@
   }
 
   .featured-categories__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
   }
 }

@@ -1,6 +1,5 @@
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { Button } from '../../../../components/ui/Button/Button';
 import './Hero.css';
 
 export function Hero() {
@@ -25,13 +24,15 @@ export function Hero() {
             essentials designed to make everyday life simpler.
           </p>
 
+
           <div className="hero__actions">
-            <Button size="lg">
-              <Link to="/products">
-                Shop Now
-                <ArrowRight size={18} />
-              </Link>
-            </Button>
+            <Link
+              to="/products"
+              className="hero__primary-link"
+            >
+              Shop Now
+              <ArrowRight size={18} />
+            </Link>
 
             <Link
               to="/products"
@@ -41,6 +42,7 @@ export function Hero() {
               <ArrowRight size={17} />
             </Link>
           </div>
+
 
           <div className="hero__trust">
             <div className="hero__trust-item">
@@ -73,13 +75,16 @@ export function Hero() {
               Featured
             </div>
 
+ 
             <div className="hero__product">
-              <div className="hero__product-device">
-                <div className="hero__product-screen">
-                  V
-                </div>
-              </div>
+              <img
+                className="hero__product-image"
+                src="https://apiua.icoola.ua/aimeos/images/products/b-u-apple-iphone-11-pro-max-512gb-space-gray-smart_1746708627/1746708627_2103456901_681ca89342b0d_b-u-apple-iphone-11-pro-max-512gb-space-gray-smart-nova-batareya.webp"
+                alt="Graphite smartphone with a turquoise display"
+                loading="eager"
+              />
             </div>
+
 
             <div className="hero__product-info">
               <div>
