@@ -39,7 +39,45 @@
   object-fit: contain;
   transition: transform 300ms ease;
 }
+.product-card__image-link {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  place-items: center;
+  border-radius: 8px;
+}
 
+.product-card__image-fallback {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: 160px;
+  place-items: center;
+  color: var(--color-muted, #7c898d);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.product-card__name a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.product-card__name a:hover {
+  color: var(--color-primary, #087e75);
+}
+.product-card__image-fallback {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: 160px;
+  place-items: center;
+  color: var(--color-muted, #7c898d);
+  font-size: 0.85rem;
+  text-align: center;
+}
 .product-card:hover .product-card__image {
   transform: scale(1.045);
 }
@@ -171,32 +209,34 @@
   align-items: center;
   justify-content: center;
   gap: 9px;
+
   width: 100%;
   min-height: 44px;
   margin-top: auto;
   padding: 11px 12px;
-  border: 1px solid #087e75;
+
+  border: 1px solid var(--color-primary, #087e75);
   border-radius: 10px;
-  background: #087e75;
+
+  background: var(--color-primary, #087e75);
   color: #fff;
+
   font: inherit;
   font-size: 0.84rem;
   font-weight: 700;
+
   cursor: pointer;
+
   transition:
     background 180ms ease,
     border-color 180ms ease,
     transform 180ms ease;
 }
 
-.product-card__pricing + .product-card__add-button {
-  margin-top: 18px;
-}
-
 .product-card__add-button:hover:not(:disabled) {
   transform: translateY(-1px);
-  border-color: #06685f;
-  background: #06685f;
+  background: var(--color-primary-hover, #06685f);
+  border-color: var(--color-primary-hover, #06685f);
 }
 
 .product-card__add-button:focus-visible {
@@ -209,6 +249,10 @@
   background: #edf0f0;
   color: #8c9799;
   cursor: not-allowed;
+}
+
+.product-card__pricing + .product-card__add-button {
+  margin-top: 18px;
 }
 
 /* Responsive */
@@ -229,7 +273,14 @@
   .product-card__name {
     font-size: 0.9rem;
   }
+.product-card__name a {
+  color: inherit;
+  text-decoration: none;
+}
 
+.product-card__name a:hover {
+  color: var(--color-primary, #087e75);
+}
   .product-card__price {
     font-size: 1.05rem;
   }

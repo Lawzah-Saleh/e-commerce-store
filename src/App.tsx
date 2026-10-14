@@ -4,7 +4,7 @@ import { MainLayout } from './layouts/MainLayout/MainLayout';
 import { HomePage } from './pages/HomePage/HomePage';
 import Products from './pages/Products/Products';
 import CartPage from './pages/CartPage/CartPage';
-
+import { ProductDetails } from './pages/ProductDetails/ProductDetails';
 
 
 function NotFoundPage() {
@@ -23,6 +23,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<Products />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/products/:slug"  element={<ProductDetails />}/>
       </Route>
 
       <Route path="*" element={<NotFoundPage />} />

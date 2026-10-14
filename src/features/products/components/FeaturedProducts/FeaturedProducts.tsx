@@ -9,15 +9,17 @@ export function FeaturedProducts() {
     <section className="featured-products">
       <div className="featured-products__container">
         <div className="featured-products__header">
-          <div>
+          <div className="featured-products__heading">
             <span className="featured-products__eyebrow">
-              Featured
+              <span className="featured-products__eyebrow-line" />
+              OUR SELECTION
+              <span className="featured-products__eyebrow-line" />
             </span>
 
-            <h2>Popular products</h2>
+            <h2>Featured Products</h2>
 
             <p>
-              Discover some of the products our customers love.
+              Discover the technology that makes everyday life better.
             </p>
           </div>
 
@@ -25,7 +27,7 @@ export function FeaturedProducts() {
             to="/products"
             className="featured-products__view-all"
           >
-            <span>View all</span>
+            <span>View all products</span>
             <ArrowRight size={16} />
           </Link>
         </div>
