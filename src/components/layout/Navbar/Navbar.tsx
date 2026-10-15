@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { SearchInput } from '../../common/SearchInput/SearchInput';
 import './Navbar.css';
 import { useCart } from '../../../features/cart/context/CartContext';
+import { useWishlist } from '../../../features/wishlist/context/WishlistContext';
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { itemCount } = useCart();
@@ -22,7 +23,7 @@ export function Navbar() {
     { label: 'Categories', path: '/categories' },
     { label: 'Deals', path: '/deals' },
   ];
-
+  const { itemCount: wishlistCount } = useWishlist();
   return (
     <header className="navbar">
       <div className="navbar__container">
@@ -79,15 +80,19 @@ export function Navbar() {
 
         {/* Actions */}
         <div className="navbar__actions">
+        <Link
+          to="/wishlist"
+          className="navbar__action navbar__wishlist"
+          aria-label={`Wishlist, ${wishlistCount} saved products`}
+        >
+          <Heart size={19} strokeWidth={1.8} />
 
-          <Link
-            to="/wishlist"
-            className="navbar__action"
-            aria-label="Wishlist"
-          >
-            <Heart size={19} strokeWidth={1.8} />
-          </Link>
-
+          {wishlistCount > 0 && (
+            <span className="navbar__badge">
+              {wishlistCount}
+            </span>
+          )}
+        </Link>
           <Link
             to="/cart"
             className="navbar__action navbar__cart"
@@ -138,7 +143,6 @@ export function Navbar() {
         </nav>
 
         <div className="navbar__mobile-divider" />
-
         <Link
           to="/wishlist"
           className="navbar__mobile-action"
@@ -146,8 +150,13 @@ export function Navbar() {
         >
           <Heart size={19} />
           <span>Wishlist</span>
-        </Link>
 
+          {wishlistCount > 0 && (
+            <span className="navbar__mobile-badge">
+              {wishlistCount}
+            </span>
+          )}
+        </Link>
         <Link
           to="/cart"
           className="navbar__mobile-action"

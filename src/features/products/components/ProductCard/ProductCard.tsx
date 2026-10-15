@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { ShoppingBag, Star } from 'lucide-react';
-
 import { useCart } from '../../../cart/context/CartContext';
 import type { Product } from '../../types/product.types';
 import { Link } from 'react-router-dom';
 import './ProductCard.css';
-
+import { ShoppingBag, Star, Heart } from 'lucide-react';
+import { useWishlist } from '../../../wishlist/context/WishlistContext';
 interface ProductCardProps {
   product: Product;
 }
@@ -13,7 +12,8 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
   const [imageError, setImageError] = useState(false);
-
+  const { isFavorite, toggleFavorite } = useWishlist();
+  const favorite = isFavorite(product.id);
   const handleAddToCart = () => {
     if (!product.inStock) return;
 
@@ -60,6 +60,24 @@ export function ProductCard({ product }: ProductCardProps) {
               -{product.discount}%
             </span>
           )}
+          <button
+              type="button"
+              className={`product-card__favorite-button ${
+                favorite ? 'is-favorite' : ''
+              }`}
+              onClick={() => toggleFavorite(product)}
+              aria-label={
+                favorite
+                  ? `Remove ${product.name} from wishlist`
+                  : `Add ${product.name} to wishlist`
+              }
+              aria-pressed={favorite}
+            >
+              <Heart
+                size={18}
+                fill={favorite ? 'currentColor' : 'none'}
+              />
+            </button>
         </div>
 
       <div className="product-card__content">

@@ -5,8 +5,8 @@ import { HomePage } from './pages/HomePage/HomePage';
 import Products from './pages/Products/Products';
 import CartPage from './pages/CartPage/CartPage';
 import { ProductDetails } from './pages/ProductDetails/ProductDetails';
-
-
+import { WishlistProvider } from './features/wishlist/context/WishlistContext';
+import { WishlistPage } from './pages/WishlistPage/WishlistPage';
 function NotFoundPage() {
   return (
     <main style={{ padding: '64px 16px' }}>
@@ -18,16 +18,21 @@ function NotFoundPage() {
 
 function App() {
   return (
+    <WishlistProvider>
+
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<Products />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/products/:slug"  element={<ProductDetails />}/>
+        <Route path="/wishlist" element={<WishlistPage />} />
       </Route>
 
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
+    </WishlistProvider>
+
   );
 }
 
