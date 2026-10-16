@@ -19,7 +19,7 @@ export function CategoryCard({
 }: CategoryCardProps) {
   return (
     <Link
-      to={`/categories/${slug}`}
+      to={`/products?category=${slug}`}
       className="category-card"
     >
       <div className="category-card__top">

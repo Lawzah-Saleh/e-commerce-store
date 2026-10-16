@@ -1,5 +1,3 @@
-
-import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Search, X, SlidersHorizontal } from 'lucide-react';
 
@@ -18,9 +16,9 @@ const categories = [
 ];
 
 export default function Products() {
-  const [searchTerm, setSearchTerm] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const searchTerm = searchParams.get('search') ?? '';
   const selectedCategory = searchParams.get('category') ?? '';
   const normalizedSearch = searchTerm.trim().toLowerCase();
 
@@ -38,7 +36,19 @@ export default function Products() {
   const selectedCategoryLabel =
     categories.find((category) => category.value === selectedCategory)
       ?.label ?? 'All categories';
+  function handleSearchChange(value: string) {
+    setSearchParams((previousParams) => {
+      const nextParams = new URLSearchParams(previousParams);
 
+      if (value) {
+        nextParams.set('search', value);
+      } else {
+        nextParams.delete('search');
+      }
+
+      return nextParams;
+    });
+  }
   function handleCategoryChange(value: string) {
     setSearchParams((previousParams) => {
       const nextParams = new URLSearchParams(previousParams);
@@ -54,8 +64,7 @@ export default function Products() {
   }
 
   function clearFilters() {
-    setSearchTerm('');
-    handleCategoryChange('');
+    setSearchParams({});
   }
 
   return (
@@ -126,15 +135,14 @@ export default function Products() {
               placeholder="Search products or brands..."
               aria-label="Search products or brands"
               value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
+              onChange={(event) => handleSearchChange(event.target.value)}
             />
-
             {searchTerm && (
               <button
                 type="button"
                 className="products-search__clear"
                 aria-label="Clear search"
-                onClick={() => setSearchTerm('')}
+                onClick={() => handleSearchChange('')}
               >
                 <X size={17} />
               </button>

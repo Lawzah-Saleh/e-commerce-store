@@ -1,16 +1,29 @@
 import { Heart, Menu, ShoppingBag, User, X } from 'lucide-react';
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
 import { SearchInput } from '../../common/SearchInput/SearchInput';
 import './Navbar.css';
 import { useCart } from '../../../features/cart/context/CartContext';
 import { useWishlist } from '../../../features/wishlist/context/WishlistContext';
+import { Link, NavLink, useNavigate, useLocation,useSearchParams } from 'react-router-dom';
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { itemCount } = useCart();
 
   const handleSearch = (value: string) => {
-    console.log('Search:', value);
+    const params = new URLSearchParams(
+      location.pathname === '/products' ? location.search : '',
+    );
+
+    if (value) {
+      params.set('search', value);
+    } else {
+      params.delete('search');
+    }
+
+    const query = params.toString();
+
+    navigate(`/products${query ? `?${query}` : ''}`);
+    closeMenu();
   };
 
   const closeMenu = () => {
@@ -24,6 +37,9 @@ export function Navbar() {
     { label: 'Deals', path: '/deals' },
   ];
   const { itemCount: wishlistCount } = useWishlist();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
   return (
     <header className="navbar">
       <div className="navbar__container">
@@ -73,6 +89,7 @@ export function Navbar() {
         {/* Search */}
         <div className="navbar__search">
           <SearchInput
+            value={searchParams.get('search') ?? ''}
             onSearch={handleSearch}
             placeholder="Search products..."
           />

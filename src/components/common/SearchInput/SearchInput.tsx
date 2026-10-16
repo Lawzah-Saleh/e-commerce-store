@@ -1,5 +1,7 @@
+
 import { Search, X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import type { FormEvent } from 'react';
 import { Input } from '../../ui/Input/Input';
 import './SearchInput.css';
 
@@ -16,7 +18,11 @@ export function SearchInput({
 }: SearchInputProps) {
   const [searchValue, setSearchValue] = useState(value);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    setSearchValue(value);
+  }, [value]);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     onSearch?.(searchValue.trim());
   };
