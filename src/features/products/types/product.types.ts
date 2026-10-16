@@ -3,6 +3,7 @@ export interface Product {
   name: string;
   slug: string;
   brand: string;
+  category: string;
   image: string;
   price: number;
   compareAtPrice?: number;
@@ -11,4 +12,5 @@ export interface Product {
   badge?: 'New' | 'Sale';
   discount?: number;
   inStock: boolean;
+  isFeatured?: boolean;
 }

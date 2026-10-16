@@ -1,28 +1,69 @@
 
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Search, X, SlidersHorizontal } from 'lucide-react';
+
 import { products } from '../../features/products/data/products';
 import { ProductCard } from '../../features/products/components/ProductCard/ProductCard';
 import './Products.css';
 
+const categories = [
+  { label: 'All categories', value: '' },
+  { label: 'Smartphones', value: 'smartphones' },
+  { label: 'Laptops', value: 'laptops' },
+  { label: 'Tablets', value: 'tablets' },
+  { label: 'Audio', value: 'audio' },
+  { label: 'Gaming', value: 'gaming' },
+  { label: 'Smart Watches', value: 'smart-watches' },
+];
+
 export default function Products() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
 
+  const selectedCategory = searchParams.get('category') ?? '';
   const normalizedSearch = searchTerm.trim().toLowerCase();
 
   const filteredProducts = products.filter((product) => {
-    return (
+    const matchesSearch =
       product.name.toLowerCase().includes(normalizedSearch) ||
-      product.brand.toLowerCase().includes(normalizedSearch)
-    );
+      product.brand.toLowerCase().includes(normalizedSearch);
+
+    const matchesCategory =
+      !selectedCategory || product.category === selectedCategory;
+
+    return matchesSearch && matchesCategory;
   });
+
+  const selectedCategoryLabel =
+    categories.find((category) => category.value === selectedCategory)
+      ?.label ?? 'All categories';
+
+  function handleCategoryChange(value: string) {
+    setSearchParams((previousParams) => {
+      const nextParams = new URLSearchParams(previousParams);
+
+      if (value) {
+        nextParams.set('category', value);
+      } else {
+        nextParams.delete('category');
+      }
+
+      return nextParams;
+    });
+  }
+
+  function clearFilters() {
+    setSearchTerm('');
+    handleCategoryChange('');
+  }
 
   return (
     <main className="products-page">
       <section className="products-hero">
         <div className="products-hero__content">
           <span className="products-hero__eyebrow">
-            THE NEXORA COLLECTION
+            THE VELORA COLLECTION
           </span>
 
           <h1>
@@ -42,7 +83,7 @@ export default function Products() {
 
         <div className="products-hero__decoration" aria-hidden="true">
           <span className="products-hero__orb" />
-          <span className="products-hero__label">N / 01</span>
+          <span className="products-hero__label">V / 01</span>
         </div>
       </section>
 
@@ -56,12 +97,23 @@ export default function Products() {
             <span className="products-catalog__eyebrow">
               OUR SELECTION
             </span>
-            <h2>Explore Products</h2>
-            <p>Find something that fits your lifestyle.</p>
+
+            <h2>
+              {selectedCategory
+                ? selectedCategoryLabel
+                : 'Explore Products'}
+            </h2>
+
+            <p>
+              {selectedCategory
+                ? `Explore our ${selectedCategoryLabel.toLowerCase()} collection.`
+                : 'Find something that fits your lifestyle.'}
+            </p>
           </div>
 
           <span className="products-catalog__total">
-            {filteredProducts.length} products
+            {filteredProducts.length}{' '}
+            {filteredProducts.length === 1 ? 'product' : 'products'}
           </span>
         </div>
 
@@ -89,10 +141,27 @@ export default function Products() {
             )}
           </label>
 
-          <div className="products-toolbar__status">
+          <label className="products-category-filter">
             <SlidersHorizontal size={17} aria-hidden="true" />
-            <span>All products</span>
-          </div>
+
+            <span className="products-category-filter__label">
+              Category
+            </span>
+
+            <select
+              aria-label="Filter products by category"
+              value={selectedCategory}
+              onChange={(event) =>
+                handleCategoryChange(event.target.value)
+              }
+            >
+              {categories.map((category) => (
+                <option key={category.value} value={category.value}>
+                  {category.label}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
 
         {filteredProducts.length > 0 ? (
@@ -110,15 +179,12 @@ export default function Products() {
             <h3>No products found</h3>
 
             <p>
-              We couldn’t find a match. Try another product name
-              or brand.
+              We couldn’t find a match. Try another search
+              or choose a different category.
             </p>
 
-            <button
-              type="button"
-              onClick={() => setSearchTerm('')}
-            >
-              Clear search
+            <button type="button" onClick={clearFilters}>
+              Clear filters
             </button>
           </div>
         )}

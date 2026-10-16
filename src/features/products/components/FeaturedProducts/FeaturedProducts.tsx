@@ -32,8 +32,10 @@ export function FeaturedProducts() {
           </Link>
         </div>
 
-        <ProductGrid products={products} />
-      </div>
+          <ProductGrid
+            products={products.filter((product) => product.isFeatured)}
+          />      
+          </div>
     </section>
   );
 }   

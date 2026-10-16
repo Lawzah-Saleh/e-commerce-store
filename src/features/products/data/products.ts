@@ -6,6 +6,7 @@ export const products: Product[] = [
     name: 'iPhone 16 Pro',
     slug: 'iphone-16-pro',
     brand: 'Apple',
+    category: 'smartphones',
     image:
       'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=800&q=80',
     price: 999,
@@ -15,12 +16,15 @@ export const products: Product[] = [
     badge: 'New',
     discount: 9,
     inStock: true,
+    isFeatured: true,
+
   },
   {
     id: 2,
     name: 'MacBook Air M3',
     slug: 'macbook-air-m3',
     brand: 'Apple',
+    category: 'laptops',
     image:
       'https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=800&q=80',
     price: 1099,
@@ -30,12 +34,15 @@ export const products: Product[] = [
     badge: 'New',
     discount: 8,
     inStock: true,
+    isFeatured: true,
+
   },
   {
     id: 3,
     name: 'Galaxy Tab S9',
     slug: 'galaxy-tab-s9',
     brand: 'Samsung',
+    category: 'tablets',    
     image:
       'https://images.unsplash.com/photo-1561154464-82e9adf32764?auto=format&fit=crop&w=800&q=80',
     price: 699,
@@ -45,12 +52,15 @@ export const products: Product[] = [
     badge: 'Sale',
     discount: 13,
     inStock: true,
+    isFeatured: true,
+
   },
   {
     id: 4,
     name: 'WH-1000XM5',
     slug: 'wh-1000xm5',
     brand: 'Sony',
+    category: 'audio',
     image:
       'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80',
     price: 349,
@@ -60,12 +70,15 @@ export const products: Product[] = [
     badge: 'Sale',
     discount: 13,
     inStock: true,
+    isFeatured: true,
+
   },
   {
     id: 5,
     name: 'Apple Watch Series 10',
     slug: 'apple-watch-series-10',
     brand: 'Apple',
+    category: 'smart-watches',
     image:
       'https://images.unsplash.com/photo-1551816230-ef5deaed4a26?auto=format&fit=crop&w=800&q=80',
     price: 429,
@@ -73,17 +86,22 @@ export const products: Product[] = [
     reviewCount: 73,
     badge: 'New',
     inStock: true,
+    isFeatured: false,
+
   },
   {
     id: 6,
     name: 'PlayStation 5',
     slug: 'playstation-5',
     brand: 'Sony',
+    category: 'gaming',
     image:
       'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=800&q=80',
     price: 499,
     rating: 4.9,
     reviewCount: 218,
     inStock: true,
+    isFeatured: false,
+
   },
 ];
