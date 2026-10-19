@@ -127,11 +127,7 @@ export default function CartPage() {
                         type="button"
                         aria-label={`Increase ${product.name} quantity`}
                         disabled={!product.inStock}
-                     //</div>   disabled={
-                     //   !product.inStock ||
-                     //   (product.stockQuantity !== undefined &&
-                      //      quantity >= product.stockQuantity)
-                      //  }
+          
                         onClick={() =>
                           updateQuantity(product.id, quantity + 1)
                         }

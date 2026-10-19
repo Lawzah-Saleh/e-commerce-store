@@ -9,7 +9,6 @@ import {
 
 import { CategoryCard } from '../CategoryCard/CategoryCard';
 import './FeaturedCategories.css';
-import { Link } from 'react-router-dom';
 const categories = [
   {
     name: 'Smartphones',
