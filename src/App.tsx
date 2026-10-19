@@ -28,7 +28,6 @@ function App() {
         <Route path="/products/:slug"  element={<ProductDetails />}/>
         <Route path="/wishlist" element={<WishlistPage />} />
       </Route>
-
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
     </WishlistProvider>
