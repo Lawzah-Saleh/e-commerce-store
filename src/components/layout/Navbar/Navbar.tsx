@@ -86,7 +86,6 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* Search */}
         <div className="navbar__search">
           <SearchInput
             value={searchParams.get('search') ?? ''}
@@ -95,7 +94,6 @@ export function Navbar() {
           />
         </div>
 
-        {/* Actions */}
         <div className="navbar__actions">
         <Link
           to="/wishlist"
