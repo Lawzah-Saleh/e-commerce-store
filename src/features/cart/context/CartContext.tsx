@@ -24,7 +24,6 @@ function isValidCartItem(item: unknown): item is CartItem {
   if (typeof item !== 'object' || item === null) {
     return false;
   }
-
   const candidate = item as Partial<CartItem>;
 
   return (
@@ -50,7 +49,6 @@ const [items, setItems] = useState<CartItem[]>(() => {
     if (!savedCart) {
       return [];
     }
-
     const parsed: unknown = JSON.parse(savedCart);
 
     if (!Array.isArray(parsed)) {
@@ -93,7 +91,6 @@ const addToCart = (product: Product) => {
   });
 };
 
-
   const removeFromCart = (productId: number) => {
     setItems((currentItems) =>
       currentItems.filter(
@@ -101,7 +98,6 @@ const addToCart = (product: Product) => {
       )
     );
   };
-
 
 const updateQuantity = (
   productId: number,
@@ -127,8 +123,6 @@ const updateQuantity = (
     )
   );
 };
-
-
   const clearCart = () => {
     setItems([]);
   };
