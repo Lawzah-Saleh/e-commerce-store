@@ -14,12 +14,20 @@ const categories = [
   { label: 'Gaming', value: 'gaming' },
   { label: 'Smart Watches', value: 'smart-watches' },
 ];
+  const sortOptions = [
+    { label: 'Featured', value: 'featured' },
+    { label: 'Price: Low to High', value: 'price-asc' },
+    { label: 'Price: High to Low', value: 'price-desc' },
+    { label: 'Top Rated', value: 'rating' },
+    { label: 'Name: A to Z', value: 'name' },
+  ];
 
 export default function Products() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const searchTerm = searchParams.get('search') ?? '';
   const selectedCategory = searchParams.get('category') ?? '';
+  const sortBy = searchParams.get('sort') ?? 'featured';
   const normalizedSearch = searchTerm.trim().toLowerCase();
 
   const filteredProducts = products.filter((product) => {
@@ -32,7 +40,25 @@ export default function Products() {
 
     return matchesSearch && matchesCategory;
   });
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case 'price-asc':
+        return a.price - b.price;
 
+      case 'price-desc':
+        return b.price - a.price;
+
+      case 'rating':
+        return b.rating - a.rating;
+
+      case 'name':
+        return a.name.localeCompare(b.name);
+
+      default:
+        return Number(Boolean(b.isFeatured)) -
+          Number(Boolean(a.isFeatured));
+    }
+  });
   const selectedCategoryLabel =
     categories.find((category) => category.value === selectedCategory)
       ?.label ?? 'All categories';
@@ -62,7 +88,19 @@ export default function Products() {
       return nextParams;
     });
   }
+  function handleSortChange(value: string) {
+    setSearchParams((previousParams) => {
+      const nextParams = new URLSearchParams(previousParams);
 
+      if (value === 'featured') {
+        nextParams.delete('sort');
+      } else {
+        nextParams.set('sort', value);
+      }
+
+      return nextParams;
+    });
+  }
   function clearFilters() {
     setSearchParams({});
   }
@@ -170,11 +208,26 @@ export default function Products() {
               ))}
             </select>
           </label>
+          <label className="products-sort">
+            <span className="products-sort__label">Sort by</span>
+
+            <select
+              aria-label="Sort products"
+              value={sortBy}
+              onChange={(event) => handleSortChange(event.target.value)}
+            >
+              {sortOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
 
-        {filteredProducts.length > 0 ? (
+        {sortedProducts.length > 0 ? (
           <div className="products-grid">
-            {filteredProducts.map((product) => (
+            {sortedProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>

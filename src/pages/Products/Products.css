@@ -470,3 +470,29 @@
     text-align: end;
   }
 }
+.products-sort {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 12px;
+  background: var(--color-surface, #fff);
+}
+
+.products-sort__label {
+  color: var(--color-text-muted, #6b7280);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.products-sort select {
+  min-width: 135px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
