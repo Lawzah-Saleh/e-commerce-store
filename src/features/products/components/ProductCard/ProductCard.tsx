@@ -12,12 +12,14 @@ interface ProductCardProps {
 export function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
   const [imageError, setImageError] = useState(false);
+  const [added, setAdded] = useState(false);
   const { isFavorite, toggleFavorite } = useWishlist();
   const favorite = isFavorite(product.id);
   const handleAddToCart = () => {
     if (!product.inStock) return;
 
     addToCart(product);
+    setAdded(true);
   };
 
   return (
@@ -119,11 +121,15 @@ export function ProductCard({ product }: ProductCardProps) {
           className="product-card__add-button"
           onClick={handleAddToCart}
           disabled={!product.inStock}
+          aria-live="polite"
         >
           <ShoppingBag size={18} aria-hidden="true" />
-
           <span>
-            {product.inStock ? 'Add to Cart' : 'Out of Stock'}
+            {!product.inStock
+              ? 'Out of Stock'
+              : added
+                ? 'Added to Cart'
+                : 'Add to Cart'}
           </span>
         </button>
       </div>

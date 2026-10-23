@@ -7,6 +7,7 @@ import CartPage from './pages/CartPage/CartPage';
 import { ProductDetails } from './pages/ProductDetails/ProductDetails';
 import { WishlistProvider } from './features/wishlist/context/WishlistContext';
 import { WishlistPage } from './pages/WishlistPage/WishlistPage';
+import { CategoriesPage } from './pages/Categories/CategoriesPage';
 function NotFoundPage() {
   return (
     <main style={{ padding: '64px 16px' }}>
@@ -26,6 +27,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/products/:slug"  element={<ProductDetails />}/>
+        <Route path="/categories" element={<CategoriesPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
       </Route>
       <Route path="*" element={<NotFoundPage />} />
