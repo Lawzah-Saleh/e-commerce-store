@@ -44,16 +44,15 @@ export function CartProvider({
 }: CartProviderProps) {
 const [items, setItems] = useState<CartItem[]>(() => {
   try {
-    const savedCart = localStorage.getItem('nexora-cart');
+    const savedCart =
+      localStorage.getItem('velora-cart') ??
+      localStorage.getItem('nexora-cart');
 
-    if (!savedCart) {
-      return [];
-    }
+    if (!savedCart) return [];
+
     const parsed: unknown = JSON.parse(savedCart);
 
-    if (!Array.isArray(parsed)) {
-      return [];
-    }
+    if (!Array.isArray(parsed)) return [];
 
     return parsed.filter(isValidCartItem);
   } catch (error) {
@@ -61,6 +60,13 @@ const [items, setItems] = useState<CartItem[]>(() => {
     return [];
   }
 });
+useEffect(() => {
+  try {
+    localStorage.setItem('velora-cart', JSON.stringify(items));
+  } catch (error) {
+    console.error('Failed to save cart to localStorage:', error);
+  }
+}, [items]);
 
 const addToCart = (product: Product) => {
   if (!product.inStock) return;
@@ -113,14 +119,20 @@ const updateQuantity = (
   }
 
   setItems((currentItems) =>
-    currentItems.map((item) =>
-      item.product.id === productId
-        ? {
-            ...item,
-            quantity: safeQuantity,
-          }
-        : item
-    )
+    currentItems.map((item) => {
+      if (item.product.id !== productId) {
+        return item;
+      }
+
+      if (!item.product.inStock) {
+        return item;
+      }
+
+      return {
+        ...item,
+        quantity: safeQuantity,
+      };
+    })
   );
 };
   const clearCart = () => {

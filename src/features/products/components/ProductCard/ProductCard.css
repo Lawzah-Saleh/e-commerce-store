@@ -421,3 +421,11 @@
     transform: none;
   }
 }
+.product-card__favorite-button:focus-visible {
+  outline: 3px solid rgb(15 157 145 / 35%);
+  outline-offset: 3px;
+}
+
+.product-card__favorite-button:active {
+  transform: scale(0.94);
+}

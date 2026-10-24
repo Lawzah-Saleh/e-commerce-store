@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCart } from '../../../cart/context/CartContext';
 import type { Product } from '../../types/product.types';
 import { Link } from 'react-router-dom';
@@ -13,6 +13,15 @@ export function ProductCard({ product }: ProductCardProps) {
   const { addToCart } = useCart();
   const [imageError, setImageError] = useState(false);
   const [added, setAdded] = useState(false);
+    useEffect(() => {
+    if (!added) return;
+
+    const timeoutId = window.setTimeout(() => {
+      setAdded(false);
+    }, 2000);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [added]);
   const { isFavorite, toggleFavorite } = useWishlist();
   const favorite = isFavorite(product.id);
   const handleAddToCart = () => {

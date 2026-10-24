@@ -35,7 +35,7 @@ export default function CartPage() {
           </div>
 
           <span className="cart-page__eyebrow">
-            YOUR NEXORA BAG
+            YOUR VELORA BAG
           </span>
 
           <h1>Your cart is empty</h1>
@@ -57,7 +57,7 @@ export default function CartPage() {
     <main className="cart-page">
       <header className="cart-page__header">
         <span className="cart-page__eyebrow">
-          YOUR NEXORA BAG
+          YOUR VELORA BAG
         </span>
 
         <h1>Shopping Cart</h1>
@@ -83,11 +83,11 @@ export default function CartPage() {
                 className="cart-item"
                 key={product.id}
               >
-                <Link
-                  to="/products"
-                  className="cart-item__image-link"
-                  aria-label={`Browse products: ${product.name}`}
-                >
+            <Link
+              to={`/products/${product.slug}`}
+              className="cart-item__image-link"
+              aria-label={`View details for ${product.name}`}
+            >
                   <img
                     className="cart-item__image"
                     src={product.image}
@@ -139,6 +139,7 @@ export default function CartPage() {
                     <button
                       type="button"
                       className="cart-item__remove"
+                      aria-label={`Remove ${product.name} from cart`}
                       onClick={() => removeFromCart(product.id)}
                     >
                       <Trash2 size={15} />
