@@ -11,7 +11,7 @@
   padding: 48px 0 88px;
 }
 
-/* Header */
+
 
 .cart-page__header {
   margin-bottom: 36px;
@@ -38,7 +38,7 @@
   line-height: 1.7;
 }
 
-/* Layout */
+
 
 .cart-layout {
   display: grid;
@@ -68,7 +68,7 @@
   font-size: 0.85rem;
 }
 
-/* Items */
+
 
 .cart-items {
   overflow: hidden;
