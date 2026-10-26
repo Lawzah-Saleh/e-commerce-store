@@ -13,10 +13,6 @@
 }
 
 
-/* =================================
-   Header
-================================= */
-
 .featured-categories__header {
   display: flex;
   justify-content: center;
@@ -45,9 +41,6 @@
   font-size: clamp(28px, 3vw, 36px);
   letter-spacing: -1px;
 }
-
-
-
 
 .featured-categories__header p {
   margin-top: 8px;
@@ -94,9 +87,6 @@
   }
 }
 
-/* =================================
-   Grid
-================================= */
 
 .featured-categories__grid {
   display: grid;
