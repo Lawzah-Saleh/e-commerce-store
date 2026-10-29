@@ -6,7 +6,6 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-
 import type { Product } from '../../products/types/product.types';
 import type {
   CartContextValue,

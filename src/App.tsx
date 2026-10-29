@@ -16,11 +16,9 @@ function NotFoundPage() {
     </main>
   );
 }
-
 function App() {
   return (
     <WishlistProvider>
-
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
@@ -33,8 +31,6 @@ function App() {
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
     </WishlistProvider>
-
   );
 }
-
 export default App;
